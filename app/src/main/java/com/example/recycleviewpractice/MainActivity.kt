@@ -24,14 +24,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // 這裡是RecyclerView
+        // 這裡是RecyclerView，不用理它
         val recyclerView: RecyclerView = findViewById(R.id.recyclerView)
         recyclerView.apply {
             adapter = RecyclerViewAdapter(context, listOf("第一個", "第二個", "第三個", "第四個", "第五個"))
             layoutManager = LinearLayoutManager(context)
         }
 
-        // 實作Spinner
+        // 實作Spinner（從這開始）
         // 1. 把我想選擇的值丟進去Spinner & 可以把我選擇的值顯示出來
         var currencyArray = arrayListOf("TWD", "USA", "CNY", "HKD", "JPY")
         var adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, currencyArray)
@@ -146,6 +146,7 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+// 這裡是RecyclerView 不用理它
 class RecyclerViewAdapter (private val context: Context, private val data: List<String>): RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder>(){
     class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val textId: TextView = itemView.findViewById(R.id.textId)
