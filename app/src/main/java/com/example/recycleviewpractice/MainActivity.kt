@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         spinner.adapter = adapter
         spinner2.adapter = adapter
 
-        // 存放選擇spinner的值
+        // 存放選擇好的spinner的值
         var selectCurrencyLeft: String = ""
         var selectCurrencyRight: String = ""
 
@@ -51,11 +51,14 @@ class MainActivity : AppCompatActivity() {
 
         // 2. 取選出來的值去做判斷->運算
         spinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
+            // 當spinner 做出選擇時，會呼叫此函式
             override fun onItemSelected(p0: AdapterView<*>?, view: View, pos: Int, id: Long) {
                 println(currencyArray[pos])
                 selectCurrencyLeft = currencyArray[pos]
 
+                // 存放運算好的匯率結果的變數
                 var result: Double
+                // 呼叫calculator函式去做運算，並把回傳的Double值丟到result
                 result = calculatorCurrency(selectCurrencyLeft, selectCurrencyRight, Integer.parseInt(editText.text.toString()))
                 textView.setText(String.format("%s", result))
 
@@ -66,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        // 同上spinner
         spinner2.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, view: View, pos: Int, id: Long) {
                 println(currencyArray[pos])
@@ -83,10 +87,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    // 做匯率計算的函式
     fun calculatorCurrency(currencyStrL: String, currencyStrR: String, editNumber: Int): Double {
         // 創一個結果變數，存放匯率轉換後的值
         var result: Double = 0.0
 
+        // 這邊是判斷式
         when (currencyStrL){
             "TWD" -> {
                 when (currencyStrR) {
